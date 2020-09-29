@@ -24,7 +24,7 @@
 </p>
 
 Para ver a **describe**, clique aqui: [SolouChuva Describe](https://github.com/georgaugusto/solouchuva)</br>
-Para ver a **web client**, clique aqui: [SolouChuva Web](https://github.com/georgaugusto/solouchuva-frontend)</br>
+Para ver a **api**, clique aqui: [SolouChuva Rest API](https://github.com/georgaugusto/solouchuva-backend)</br>
 Para ver a **hardware**, clique aqui: [SolouChuva Hardware](https://github.com/georgaugusto/solouchuva-hardware)
 
 Para ver a **aplicação** rodando, clique aqui: [SolouChuva App](https://app.solouchuva.com.br/dashboard)
@@ -33,20 +33,16 @@ Para ver a **aplicação** rodando, clique aqui: [SolouChuva App](https://app.so
 
 ## Tecnologias
 
-**Back-End:**
-- [Node.js](https://nodejs.org/en/);
+**Front-End:**
+- [ReactJS](https://reactjs.org);
 - [TypeScript](https://www.typescriptlang.org/);
-- [Express](https://expressjs.com/pt-br/)
-- [Multer](https://github.com/expressjs/multer)
-- [TypeORM](https://typeorm.io/#/)
-- [JWT-token](https://jwt.io/)
-- [uuid v4](https://github.com/thenativeweb/uuidv4/)
-- [Firebase Realtime](https://firebase.google.com/)
-- [PostgreSQL](https://www.postgresql.org/)
-- [Date-fns](https://date-fns.org/)
-- [Babel](https://babeljs.io/)
-- [Jest](https://jestjs.io/)
-- [SuperTest](https://github.com/visionmedia/supertest)
+- [React Router DOM](https://reacttraining.com/react-router/)
+- [React Icons](https://react-icons.netlify.com/#/)
+- [UnForm](https://unform.dev/)
+- [Yup](https://github.com/jquense/yup)
+- [Styled Components](https://styled-components.com/)
+- [Polished](https://github.com/styled-components/polished)
+- [Axios](https://github.com/axios/axios)
 
 **Padronização de código:**
 - [Commitlint](https://github.com/conventional-changelog/commitlint)
@@ -55,18 +51,18 @@ Para ver a **aplicação** rodando, clique aqui: [SolouChuva App](https://app.so
 - [Prettier](https://prettier.io/)
 - [EditorConfig](https://editorconfig.org/)
 
+### Template
+
+Pensando em Usabilidade e UX Design foi feito um protótipo da Dashboard utilizando a ferramenta [Figma](https://www.figma.com/file/FaPl54SgzOD4bMg9yDPMn5/TCC-Dashboard?node-id=0%3A1)
+
 ## Requisitos
 
-- [Node.js](https://nodejs.org/en/)
-- [Yarn](https://classic.yarnpkg.com/) ou [npm](https://www.npmjs.com/)
-- Um projeto no [Firebase](https://console.firebase.google.com/)
-
-> Obs.: Recomendo o uso do docker pela facilidade
+- Ter o Back-End em execução
 
 **Clone o projeto e acesse a pasta**
 
 ```bash
-$ git clone https://github.com/georgaugusto/solouchuva-backend.git && cd solouchuva-backend
+$ git clone https://github.com/georgaugusto/solouchuva-frontend.git && cd solouchuva-frontend
 ```
 
 **Siga os passos abaixo**
@@ -75,35 +71,10 @@ $ git clone https://github.com/georgaugusto/solouchuva-backend.git && cd solouch
 # Instale as dependências
 $ yarn install
 
-# Faça uma cópia de '.env.example' para '.env' e defina com suas variáveis de ambiente.
-# As variáveis aws não precisam ser preenchidas para o ambiente dev
-$ cp .env.example .env
-
-# Caso ainda não tenha crie um Realtime Database no console do Firebase
-
-# Crie a instância do postgreSQL usando docker
-$ docker run --name postgres -e POSTGRES_USER=docker \
-              -e POSTGRES_DB -e POSTGRES_PASSWORD=docker \
-              -p 5432:5432 -d postgres
-
-# Crie a instância do mongoDB usando docker
-$ docker run --name mongodb -p 27017:27017 -d -t mongo
-
-# Crie a instância do redis usando docker
-$ docker run --name redis -p 6379:6379 -d -t redis:alpine
-
-# Faça uma cópia de 'ormconfig.example.json' para 'ormconfig.json'
-# e defina os valores, se não forem preenchidos, para conectar com contêineres de banco de dados do docker
-$ cp ormconfig.example.json ormconfig.json
-
-# Assim que os serviços estiverem em execução, execute as migrações
-$ yarn typeorm migration:run
-
-# Para terminar, execute o serviço api
-$ yarn dev:server
+# Certifique-se de que o arquivo 'src/services/api.ts' tenha o IP da sua API
+# Para terminar, inicie o cliente
+$ yarn start
 ```
-
-> Obs.: Importe o arquivo `Insomnia.json` no aplicativo Insomnia, para facilitar o teste da api
 
 ## Como contribuir
 
@@ -119,7 +90,7 @@ $ gh repo fork georgaugusto/solouchuva-backend
 
 ```bash
 # Clone sua fork
-$ git clone your-fork-url && cd solouchuva-backend
+$ git clone your-fork-url && cd solouchuva-frontend
 
 # Crie uma branch com suas alterações
 $ git checkout -b my-feature
