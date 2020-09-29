@@ -40,7 +40,7 @@ const UvAlert: React.FC<WeatherStation> = ({ sensor }) => {
               color="low"
             />
           )}
-          {sensor.uvm30aIndexUv > 3 && sensor.uvm30aIndexUv <= 5 && (
+          {sensor.uvm30aIndexUv >= 3 && sensor.uvm30aIndexUv <= 5 && (
             <DiseaseAlertBox
               title="Índice Ultravioleta - Moderado (de 3 a 5)"
               description="Pequeno risco de queimadura se exposto ao Sol sem proteção.
@@ -51,7 +51,7 @@ const UvAlert: React.FC<WeatherStation> = ({ sensor }) => {
               color="warning"
             />
           )}
-          {sensor.uvm30aIndexUv > 6 && sensor.uvm30aIndexUv <= 7 && (
+          {sensor.uvm30aIndexUv >= 6 && sensor.uvm30aIndexUv <= 7 && (
             <DiseaseAlertBox
               title="Índice Ultravioleta - Alto (de 6 a 7)"
               description="Alto risco de queimadura se exposto ao Sol sem proteção.
@@ -62,7 +62,7 @@ const UvAlert: React.FC<WeatherStation> = ({ sensor }) => {
               color="danger"
             />
           )}
-          {sensor.uvm30aIndexUv > 8 && sensor.uvm30aIndexUv <= 10 && (
+          {sensor.uvm30aIndexUv >= 8 && sensor.uvm30aIndexUv <= 10 && (
             <DiseaseAlertBox
               title="Índice Ultravioleta - Muito Alto (de 8 a 10)"
               description="Altíssimo risco de queimadura se exposto ao Sol sem proteção.
@@ -73,7 +73,7 @@ const UvAlert: React.FC<WeatherStation> = ({ sensor }) => {
               color="warning"
             />
           )}
-          {sensor.uvm30aIndexUv > 11 && (
+          {sensor.uvm30aIndexUv >= 11 && (
             <DiseaseAlertBox
               title="Índice Ultravioleta - Extremo (acima de 11)"
               description="Risco extremo de queimadura. A exposição ao Sol sem
