@@ -83,7 +83,7 @@ $ yarn start
 ```bash
 # Fork usando a linha de comando oficial do GitHub, caso você não tenha a CLI do GitHub, use o site para fazer isso.
 
-$ gh repo fork georgaugusto/solouchuva-backend
+$ gh repo fork georgaugusto/solouchuva-frontend
 ```
 
 **Siga os passos abaixo**
