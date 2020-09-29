@@ -12,7 +12,7 @@ interface WeatherBoxrops {
   avatar: string;
 }
 
-const HeaderContainer: React.FC<WeatherBoxrops> = ({ name, avatar }) => {
+const HeaderContainer: React.FC<WeatherBoxrops> = ({ name }) => {
   return (
     <HeaderContent>
       {/* <img src={logoImg} alt="SolouChuva" /> */}
@@ -27,7 +27,10 @@ const HeaderContainer: React.FC<WeatherBoxrops> = ({ name, avatar }) => {
         <button type="button">
           <FiBell />
         </button>
-        <img src={avatar} alt={name} />
+        <img
+          src="https://api.adorable.io/avatars/50/abott@adorable.png"
+          alt={name}
+        />
         <div>
           <strong>{name}</strong>
         </div>
