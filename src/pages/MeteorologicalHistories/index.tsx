@@ -94,7 +94,6 @@ interface WeatherStationItemMin {
 const MeteorologicalHistories: React.FC = () => {
   const { user, signOut } = useAuth();
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const [currentWeatherStationMax, setWeatherStationMax] = useState<
     WeatherStationItemMax
@@ -112,10 +111,6 @@ const MeteorologicalHistories: React.FC = () => {
     if (modifiers.available && !modifiers.disabled) {
       setSelectedDate(day);
     }
-  }, []);
-
-  const handleMonthChange = useCallback((month: Date) => {
-    setCurrentMonth(month);
   }, []);
 
   const selectedDateFromAvg = useMemo(() => {
@@ -324,7 +319,6 @@ const MeteorologicalHistories: React.FC = () => {
             modifiers={{
               available: { daysOfWeek: [0, 1, 2, 3, 4, 5, 6] },
             }}
-            onMonthChange={handleMonthChange}
             selectedDays={selectedDate}
             onDayClick={handleDateChange}
             months={[
