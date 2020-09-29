@@ -30,7 +30,7 @@ const UvAlert: React.FC<WeatherStation> = ({ sensor }) => {
     if (formatTimestamp >= '06' && formatTimestamp <= '18') {
       return (
         <ContainerBox>
-          {sensor.uvm30aIndexUv >= 0 && (
+          {sensor.uvm30aIndexUv >= 0 && sensor.uvm30aIndexUv <= 2 && (
             <DiseaseAlertBox
               title="Índice Ultravioleta - Baixo (até 2)"
               description="Nenhum perigo para a maioria das pessoas, utilize óculos
