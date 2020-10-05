@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import 'react-day-picker/lib/style.css';
 
 import {
@@ -27,6 +27,7 @@ import {
   WeatherInformation,
   WeatherAlerts,
   SectionTwo,
+  WeatherStationHeader,
   WeatherStationContent,
   GridContent,
   LastWeatherReading,
@@ -48,7 +49,7 @@ interface WeatherStationItem {
   pluviometer: number;
   thermalSensation: number;
   uvm30aIndexUv: number;
-  timestamp: Date;
+  timestamp: Date | number;
 }
 
 const WeatherStationDashboard: React.FC = () => {
@@ -64,6 +65,25 @@ const WeatherStationDashboard: React.FC = () => {
     });
   }, []);
 
+  const isOnline = useMemo(() => {
+    if (currentWeatherStation !== undefined) {
+      if (currentWeatherStation?.timestamp >= + new Date() - 100000 && currentWeatherStation?.timestamp <= + new Date() + 100000) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  }, [currentWeatherStation]);
+
+  const formatTime = useMemo(() => {
+    return Intl.DateTimeFormat('pt-BR', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    }).format(currentWeatherStation?.timestamp)
+  }, [currentWeatherStation])
+
   return (
     <Container>
       <Header>
@@ -77,14 +97,23 @@ const WeatherStationDashboard: React.FC = () => {
           <WeatherInformation>
             <div>
               <strong>Olá, {user.name.split(' ')[0]}!</strong>
-              <span>
-                Bem-vindo ao aplicativo! A qualidade do ar é boa e fresca, você
-                pode sair hoje sem preocupações, mas não se esqueça do protetor
-                solar.
+              {isOnline ?
+                <span>
+                  Bem-vindo ao aplicativo! A qualidade do ar é boa e fresca, você
+                  pode sair hoje sem preocupações, mas não se esqueça do protetor
+                  solar.
+                </span> : 
+                <span>
+                  Bem-vindo ao aplicativo! No momento você não possui nenhuma estação meteorológica online.
               </span>
+              }
               <div>
+              {isOnline ?
+              <>
                 <FiCloud />
                 <p>Tempo ensolarado com algumas nuvens</p>
+              </> : 
+              <></>}
               </div>
             </div>
             <img src={weatherInformationImg} alt="Woman watering plant" />
@@ -97,9 +126,16 @@ const WeatherStationDashboard: React.FC = () => {
             </div>
             <div>
               <strong>Alertas pessoais!</strong>
-              {<Alert sensor={currentWeatherStation} /> && (
-                <Alert sensor={currentWeatherStation} />
-              )}
+              {isOnline ? 
+              <Alert sensor={currentWeatherStation} /> && (
+              <Alert sensor={currentWeatherStation} />
+              ) : 
+              <DiseaseAlertBox
+                title="Por enquanto você não possui alertas!"
+                description=""
+                link=""
+                color="low"
+              />}
               <strong>Alertas de culturas!</strong>
               <DiseaseAlertBox
                 title="Por enquanto você não possui alertas!"
@@ -130,18 +166,21 @@ const WeatherStationDashboard: React.FC = () => {
         </SectionOne>
 
         <SectionTwo>
-          <strong>Estação Meteorológica</strong>
+          <WeatherStationHeader>
+            <strong>Protótipo 0</strong>
+            {isOnline ? <p style={{color: "#718b7d"}}>Online</p> : <p style={{color: "#bf746d"}}>Offline</p>}
+          </WeatherStationHeader>
           <WeatherStationContent>
             <GridContent>
               <WeatherBox
-                data={currentWeatherStation?.dht22Temperature}
+                data={isOnline ? currentWeatherStation?.dht22Temperature : 0}
                 unity="°C"
                 name="Temperatura"
                 icon={FiThermometer}
                 color="#bf746d"
               />
               <WeatherBox
-                data={currentWeatherStation?.dht22Moisture}
+                data={isOnline ? currentWeatherStation?.dht22Moisture : 0}
                 unity="%"
                 name="Umidade do Ar"
                 icon={FiDroplet}
@@ -150,14 +189,14 @@ const WeatherStationDashboard: React.FC = () => {
             </GridContent>
             <GridContent>
               <WeatherBox
-                data={currentWeatherStation?.thermalSensation}
+                data={isOnline ? currentWeatherStation?.thermalSensation : 0}
                 unity="°C"
                 name="Sensação Térmica"
                 icon={FiThermometer}
                 color="#7aa3ae"
               />
               <WeatherBox
-                data={currentWeatherStation?.csmsv12Soil}
+                data={isOnline ? currentWeatherStation?.csmsv12Soil : 0}
                 unity="%"
                 name="Umidade do Solo"
                 icon={FiDroplet}
@@ -166,14 +205,14 @@ const WeatherStationDashboard: React.FC = () => {
             </GridContent>
             <GridContent>
               <WeatherBox
-                data={currentWeatherStation?.pluviometer}
+                data={isOnline ? currentWeatherStation?.pluviometer : 0}
                 unity="mm"
                 name="Índice Pluviométrico"
                 icon={FiCloudDrizzle}
                 color="#859aa2"
               />
               <WeatherBox
-                data={currentWeatherStation?.mhrdWetting}
+                data={isOnline ? currentWeatherStation?.mhrdWetting : 0}
                 unity="%"
                 name="Molhamento Foliar"
                 icon={FiFeather}
@@ -182,14 +221,14 @@ const WeatherStationDashboard: React.FC = () => {
             </GridContent>
             <GridContent>
               <WeatherBox
-                data={currentWeatherStation?.bh1750Brightness}
+                data={isOnline ? currentWeatherStation?.bh1750Brightness : 0}
                 unity="Lux"
                 name="Luminosidade"
                 icon={FiSun}
                 color="#d7c27a"
               />
               <WeatherBox
-                data={currentWeatherStation?.uvm30aIndexUv}
+                data={isOnline ? currentWeatherStation?.uvm30aIndexUv : 0}
                 unity="Uv"
                 name="Índice Ultravioleta"
                 icon={FiSun}
@@ -198,14 +237,14 @@ const WeatherStationDashboard: React.FC = () => {
             </GridContent>
             <GridContent>
               <WeatherBox
-                data={currentWeatherStation?.bmp280Pressure}
+                data={isOnline ? currentWeatherStation?.bmp280Pressure : 0}
                 unity="hpa"
                 name="Pressão Atmosférica"
                 icon={FiArrowDownCircle}
                 color="#7fb2bb"
               />
               <WeatherBox
-                data={currentWeatherStation?.anemometer}
+                data={isOnline ? currentWeatherStation?.anemometer : 0}
                 unity="Km/h"
                 name="Velocidade do Vento"
                 icon={FiWind}
@@ -214,7 +253,7 @@ const WeatherStationDashboard: React.FC = () => {
             </GridContent>
             <GridContent>
               <WeatherBox
-                data={currentWeatherStation?.bmp280Altitude}
+                data={isOnline ? currentWeatherStation?.bmp280Altitude : 0}
                 unity="m"
                 name="Altitude"
                 icon={FiTrendingUp}
@@ -225,11 +264,7 @@ const WeatherStationDashboard: React.FC = () => {
               <div>
                 <strong>Última Leitura</strong>
                 <p>
-                  {Intl.DateTimeFormat('pt-BR', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                  }).format(currentWeatherStation?.timestamp)}
+                  {isOnline ? formatTime : '00:00:00'}
                 </p>
               </div>
             </LastWeatherReading>

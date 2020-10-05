@@ -155,16 +155,29 @@ export const SectionTwo = styled.section`
   background: #f5f5f5;
   border: 1px solid rgba(237, 237, 245, 0.602601);
   border-radius: 30px 0px 0px 30px;
+`;
 
-  > strong {
-    margin-left: 30px;
-    margin-top: 25px;
+export const WeatherStationHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 25px 30px 0px 25px;
+
+  strong {
     font-style: normal;
     font-size: 18px;
     line-height: 30px;
     color: #242424;
   }
+
+  p {
+    font-style: normal;
+    font-size: 16px;
+    line-height: 30px;
+    color: #242424;
+  }
 `;
+
 
 export const WeatherStationContent = styled.div`
   margin: 30px 30px 0 30px;

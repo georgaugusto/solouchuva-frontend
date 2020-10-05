@@ -16,7 +16,7 @@ interface WeatherStationItem {
   pluviometer: number;
   thermalSensation: number;
   uvm30aIndexUv: number;
-  timestamp: Date;
+  timestamp: Date | number;
 }
 
 interface WeatherStation {
