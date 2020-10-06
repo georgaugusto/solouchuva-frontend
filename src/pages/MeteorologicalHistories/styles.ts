@@ -73,9 +73,10 @@ export const WeatherStationContent = styled.div`
 
 export const GridContent = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 
-  margin-bottom: 17px;
+  // margin-bottom: 17px;
 `;
 
 export const Calendar = styled.aside`
@@ -83,6 +84,7 @@ export const Calendar = styled.aside`
 
   margin-right: 40px;
   width: 100%;
+  max-width: 380px;
 
   .DayPicker {
     background: #ffffff;

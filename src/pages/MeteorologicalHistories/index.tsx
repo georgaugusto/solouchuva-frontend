@@ -234,8 +234,6 @@ const MeteorologicalHistories: React.FC = () => {
                 icon={FiDroplet}
                 color="#8a8786"
               />
-            </GridContent>
-            <GridContent>
               <WeatherBoxAvg
                 dataMax={currentWeatherStationMax?.pluviometerMax}
                 dataMin={currentWeatherStationMin?.pluviometerMin}
@@ -282,8 +280,6 @@ const MeteorologicalHistories: React.FC = () => {
                 icon={FiSun}
                 color="#a19583"
               />
-            </GridContent>
-            <GridContent>
               <WeatherBoxAvg
                 dataMax={currentWeatherStationMax?.bmp280PressureMax}
                 dataMin={currentWeatherStationMin?.bmp280PressureMin}

@@ -24,11 +24,11 @@ const MenuContainer: React.FC<WeatherBoxrops> = ({ buttonLogOut }) => {
             <FiGrid />
           </Link>
         </button>
-        <button type="button">
+        {/* <button type="button">
           <Link to="/AppointmentDashboard">
             <FiUsers />
           </Link>
-        </button>
+        </button> */}
       </div>
       <div>
         <button type="button" onClick={buttonLogOut}>
