@@ -102,7 +102,7 @@ const WeatherStationDashboard: React.FC = () => {
                   Bem-vindo ao aplicativo! A qualidade do ar é boa e fresca, você
                   pode sair hoje sem preocupações, mas não se esqueça do protetor
                   solar.
-                </span> : 
+                </span> :
                 <span>
                   Bem-vindo ao aplicativo! No momento você não possui nenhuma estação meteorológica online.
               </span>
@@ -112,7 +112,7 @@ const WeatherStationDashboard: React.FC = () => {
               <>
                 <FiCloud />
                 <p>Tempo ensolarado com algumas nuvens</p>
-              </> : 
+              </> :
               <></>}
               </div>
             </div>
@@ -126,10 +126,10 @@ const WeatherStationDashboard: React.FC = () => {
             </div>
             <div>
               <strong>Alertas pessoais!</strong>
-              {isOnline ? 
+              {isOnline ?
               <Alert sensor={currentWeatherStation} /> && (
               <Alert sensor={currentWeatherStation} />
-              ) : 
+              ) :
               <DiseaseAlertBox
                 title="Por enquanto você não possui alertas!"
                 description=""
@@ -167,7 +167,7 @@ const WeatherStationDashboard: React.FC = () => {
 
         <SectionTwo>
           <WeatherStationHeader>
-            <strong>Protótipo 0</strong>
+            <strong>Protótipo 0 - Assis</strong>
             {isOnline ? <p style={{color: "#718b7d"}}>Online</p> : <p style={{color: "#bf746d"}}>Offline</p>}
           </WeatherStationHeader>
           <WeatherStationContent>

@@ -27,7 +27,7 @@ interface WeatherStation {
 const UvAlert: React.FC<WeatherStation> = ({ sensor }) => {
   if (sensor !== undefined) {
     const formatTimestamp = format(sensor.timestamp, 'HH');
-    if (formatTimestamp >= '06' && formatTimestamp <= '18') {
+    if (formatTimestamp >= '06' && formatTimestamp <= '20') {
       return (
         <ContainerBox>
           {sensor.uvm30aIndexUv >= 0 && sensor.uvm30aIndexUv <= 2 && (
