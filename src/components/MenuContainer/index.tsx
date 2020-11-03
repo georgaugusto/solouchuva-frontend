@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { FiHome, FiLogOut, FiGrid, FiUsers } from 'react-icons/fi';
+import { FiHome, FiLogOut, FiGrid } from 'react-icons/fi';
 
 import { SectionZero } from './styles';
 
@@ -22,11 +22,6 @@ const MenuContainer: React.FC<WeatherBoxrops> = ({ buttonLogOut }) => {
         <button type="button">
           <Link to="/weatherstation">
             <FiGrid />
-          </Link>
-        </button>
-        <button type="button">
-          <Link to="/AppointmentDashboard">
-            <FiUsers />
           </Link>
         </button>
       </div>

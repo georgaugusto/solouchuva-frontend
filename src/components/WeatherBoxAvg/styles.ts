@@ -12,6 +12,7 @@ export const SensorData = styled.div`
   border-radius: 22px;
 
   margin-left: 17px;
+  margin-bottom: 17px;
 
   svg {
     color: #ffffff;
